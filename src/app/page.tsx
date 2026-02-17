@@ -1,24 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import UserTable from "@/components/UserTable";
-
-const mockUsers = [{
-  id: 1, name: "Oğulcem", surname: "Yıldız", email: "ogulcem@example.com", isActive: true, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", phone: "+90 555 987 6543",
-
-},
-{
-  id: 2, name: "Cem", surname: "Yıldız", email: "cem@example.com", isActive: false, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", phone: "+90 555 123 4567",
-}];
+import { fetchUsers, User } from "@/services/userService";
 
 
 
 export default function Home() {
-
+  const [users, setUsers] = useState<User[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const filteredUsers = mockUsers.filter((user) =>
+  const filteredUsers = users.filter((user) =>
   `${user.name} ${user.surname} ${user.email} ${user.description} ${user.phone}`.toLowerCase().includes(searchTerm.toLowerCase())
-);
+  );
+
+  
+
+
+  useEffect(() => {
+    const getUsers = async () => {
+      try{
+        const data = await fetchUsers();
+        console.log("Kullanıcılar başarıyla alındı:", data);
+        setUsers(data);
+
+      }catch (error) {
+        console.error("Kullanıcılar alınırken hata oluştu:", error);
+      }
+    };
+    getUsers();
+  }, []);
 
 
 
