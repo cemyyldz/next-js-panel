@@ -55,7 +55,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mb-6">
-        <button className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white px-6 py-2 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer duration-200">
+        <button className="w-full sm:w-auto bg-slate-400 hover:bg-slate-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer duration-200">
           <span>+</span>Kullanıcı Ekle
 
         </button>
@@ -88,14 +88,15 @@ export default function Home() {
         <div className="flex gap-2">
           <button
             onClick={() => setCurrrentPage((prev) => Math.max(prev - 1, 1))}
-            className="px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+            disabled={currentPage === 1}
+            className="px-4 py-2 bg-slate-400 hover:bg-slate-600 text-white font-medium rounded-3xl hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
             Önceki
 
           </button>
           <button
             onClick={() => setCurrrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
-            className="px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+            className="px-4 py-2 bg-slate-400 hover:bg-slate-600 text-white font-medium rounded-3xl hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"> 
             Sonraki
 
           </button>
