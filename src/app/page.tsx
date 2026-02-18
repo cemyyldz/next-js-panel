@@ -39,9 +39,9 @@ export default function Home() {
     };
     getUsers();
   }, []);
-  useEffect(()=>{
+  useEffect(() => {
     setCurrrentPage(1);
-  },[searchTerm]);
+  }, [searchTerm]);
 
 
 
@@ -77,7 +77,7 @@ export default function Home() {
 
       <UserTable users={currentUsers} />
 
-      <div className="flex justify-between items-center mt-6 px-4">
+      <div className="flex justify-between items-center mt-8 px-4">
         <span className="text-sm text-slate-600">
           Toplam <strong>{filteredUsers.length}</strong> kayıttan
           <strong> {indexOfFirstItem + 1}-{Math.min(indexOfLastItem, filteredUsers.length)} </strong>
@@ -87,18 +87,17 @@ export default function Home() {
 
         <div className="flex gap-2">
           <button
-          onClick={()=> setCurrrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className="px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+            onClick={() => setCurrrentPage((prev) => Math.max(prev - 1, 1))}
+            className="px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
             Önceki
 
           </button>
           <button
-          onClick={()=> setCurrrentPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+            onClick={() => setCurrrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
             Sonraki
-            
+
           </button>
         </div>
       </div>
